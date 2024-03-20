@@ -29,7 +29,13 @@ javascript: (async () => {
     async function setup_cells() {
         for (i = 0; i < brc_elements.length; i++) {
             await delay(10);
-            brc_elements[i].className = "progressBarCell futureNotCompleted";
+            if (i == 82) {
+                brc_elements[i].className = "progressBarCell completed";
+            } else if (i == 86) {
+                brc_elements[i].className = "progressBarCell notCompleted";
+            } else {
+                brc_elements[i].className = "progressBarCell futureNotCompleted";
+            }
         }
     }
 
