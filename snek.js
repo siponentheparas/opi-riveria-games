@@ -5,6 +5,7 @@ javascript: (async () => {
     }
 
     let brc_selector = document.querySelector("div[class=barRowCells]");
+    brc_selector.style.setProperty('flex-basis','calc(100% / 13)');
     let brc_elements = brc_selector.getElementsByTagName('*');
 
     for (i = 0; i < brc_elements.length; i++) {
@@ -19,8 +20,8 @@ javascript: (async () => {
         }
     }
 
-    /* This is horrible and I don't like it. But there's not any other way to do this */
-    async function add_add_cells() {
+    /* This is horrible and I don't like it. But there's not any other way to do this. */
+    async function wait_add_cells() {
         while (brc_elements.length != 156) {
             await add_cells();
         }
@@ -39,6 +40,6 @@ javascript: (async () => {
         }
     }
 
-    await add_add_cells();
+    await wait_add_cells();
     await setup_cells();
 })()
