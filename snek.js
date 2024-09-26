@@ -2,7 +2,6 @@ javascript: (async () => {
     console.log("Running opi.riveria snek.js V0.1");
     console.log("Made by https://github.com/siponentheparas");
 
-
     /* Define constants */
     const CELL_GREEN = "progressBarCell completed";
     const CELL_GREY = "progressBarCell futureNotCompleted";
@@ -10,6 +9,7 @@ javascript: (async () => {
 
     const CELL_AMOUNT = 143;
     const CELL_WIDTH = 13;
+    const CELL_ROWS = CELL_AMOUNT / CELL_WIDTH;
 
     /* Variables */
     let snake_lenght = 1;
@@ -47,29 +47,45 @@ javascript: (async () => {
         }
     }
 
+    function get_row(cell) {
+        return Math.floor(cell / CELL_WIDTH);
+    }
+
     function move_right() {
-        for (i = 0; i < snake_cells.length; i++) {
-            if (snake_cells[i] % 13 == 12) {
-                snake_cells[i] -= 12;
-            } else {
-                snake_cells[i]++;
-            }
+        if (snake_cells[0] % 13 == 12) {
+            snake_cells[0] -= 12;
+        } else {
+            snake_cells[0]++;
         }
     }
 
     function move_left() {
-        for (i = 0; i < snake_cells.length; i++) {
-            if (snake_cells[i] % 13 == 0) {
-                snake_cells[i] += 12;
-            } else {
-                snake_cells[i]--;
-            }
+        if (snake_cells[0] % 13 == 0) {
+            snake_cells[0] += 12;
+        } else {
+            snake_cells[0]--;
+        }
+    }
+
+    function move_up() {
+        if (get_row(snake_cells[0]) == 0) {
+            snake_cells[0] = CELL_AMOUNT - (CELL_WIDTH - snake_cells[0]);
+        } else {
+            snake_cells[0] -= CELL_WIDTH;
+        }
+    }
+
+    function move_down() {
+        if (get_row(snake_cells[0]) == CELL_ROWS - 1) {
+            snake_cells[0] = CELL_WIDTH - (CELL_AMOUNT - snake_cells[0]);
+        } else {
+            snake_cells[0] += CELL_WIDTH;
         }
     }
 
     /* Starts here */
     let brc_selector = document.querySelector("div[class=barRowCells]");
-    brc_selector.style.setProperty('flex-basis',`calc(100% / ${CELL_WIDTH})`);
+    brc_selector.style.setProperty('flex-basis', `calc(100% / ${CELL_WIDTH})`);
     let cells = brc_selector.getElementsByTagName('*');
 
     for (i = 0; i < cells.length; i++) {
@@ -107,7 +123,7 @@ javascript: (async () => {
     await wait_add_cells();
     await setup_cells();
 
-    document.addEventListener('keydown', function(event) {
+    document.addEventListener('keydown', function (event) {
         if (event.key === 'w') {
             direction = 'up';
         } else if (event.key === 's') {
