@@ -17,6 +17,8 @@ Matopeli, joka toimii edistymisen seurannassa. Lähdekoodin näet snek.js tiedos
 > Jos peli ei lähde pyörimään tai näyttää omituiselta, vaihda toisen kurssin sivulle.
 > Edistymisen seuranta on outo.
 
+Matoa ohjataan wasd näppäimillä ja mato voi mennä reunasta toiseen.
+
 ### Pelin lopetus
 Kun häviät pelin, eli osut itseesi, niin matosi muuttuu keltaiseksi.\
 Voit aloittaa uuden pelin klikkaamalla kirjanmerkistäsi uudestaan.\
