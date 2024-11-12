@@ -1,5 +1,5 @@
 javascript: (async () => {
-    console.log("Running opi.riveria snek.js V0.1");
+    console.log("Running opi.riveria snek.js V1.0");
     console.log("Made by https://github.com/siponentheparas");
 
     /* Define constants */
